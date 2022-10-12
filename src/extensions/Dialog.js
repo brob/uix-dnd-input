@@ -1,4 +1,4 @@
-import { BaukastenProvider, Button, DialogHeader, DialogContent, Input, Label, Stack, Flex, Select } from '@hygraph/baukasten';
+import { BaukastenProvider, Button, DialogHeader, DialogContent, Input, Label, Stack, Flex, Select, DialogFooter } from '@hygraph/baukasten';
 import { useEffect } from 'react';
 // 2. import Inter font stylesheet
 
@@ -57,13 +57,13 @@ export const Field = () => {
   }, [spells])
 
   return (
-      <BaukastenProvider>
-        <Stack gap="16">
-          <Select  items={spells} selectedItem={state} onChange={(e) => {
-            setState(e)
-          }} />
-        </Stack>
-      </BaukastenProvider>
+    <BaukastenProvider>
+      <Stack gap="16">
+        <Select items={spells} selectedItem={state} onChange={(e) => {
+          setState(e)
+        }} />
+      </Stack>
+    </BaukastenProvider>
   );
 };
 
@@ -86,23 +86,25 @@ export const Dialog = () => {
     }
   }, [spells])
 
-  console.log({spells, state})
+  console.log({ spells, state })
 
   return (
-      <BaukastenProvider>
+    <BaukastenProvider>
 
       <DialogHeader>Find your D&D Spell</DialogHeader>
-      
+
       <DialogContent>
         <Stack gap="16">
           <Label htmlFor="spell">Spell Key</Label>
-          <Select  items={spells} selectedItem={state} onChange={(e) => {
-            console.log(e)  
+          <Select items={spells} selectedItem={state} onChange={(e) => {
             setState(e)
           }} />
-          <Button alignSelf="end" size='large' onClick={() => onCloseDialog(state)}>Select</Button>
         </Stack>
       </DialogContent>
-      </BaukastenProvider>
+      <DialogFooter>
+        <Button alignSelf="end" size='large' variant='outline' onClick={() => onCloseDialog()}>Cancel</Button>
+        <Button alignSelf="end" size='large' onClick={() => onCloseDialog(state)}>Select</Button>   
+      </DialogFooter>    
+    </BaukastenProvider>
   );
 };
