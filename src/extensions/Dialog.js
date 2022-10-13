@@ -1,7 +1,5 @@
 import { BaukastenProvider, Button, DialogHeader, DialogContent, Input, Label, Stack, Flex, Select, DialogFooter } from '@hygraph/baukasten';
 import { useEffect } from 'react';
-// 2. import Inter font stylesheet
-
 
 import {
   useUiExtensionDialog,

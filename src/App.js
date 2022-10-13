@@ -1,4 +1,5 @@
 import {Dialog, DialogButton} from './extensions/Dialog';
+import Setup from './extensions/Setup';
 import {
   Wrapper
 } from '@graphcms/uix-react-sdk';
@@ -14,10 +15,11 @@ const declaration = {
 };
 function App() {
   return (
-    <Wrapper declaration={declaration}>
+    <Wrapper>
       <BrowserRouter>
         <Routes>
           <Route path="/dialog" element={<Dialog />} exact />
+          <Route path="/setup" element={<Setup />} exact />
           <Route path="/" element={<DialogButton />} exact />
         </Routes>
       </BrowserRouter>
