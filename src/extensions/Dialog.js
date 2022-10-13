@@ -1,10 +1,10 @@
 import { BaukastenProvider, Button, DialogHeader, DialogContent, Input, Label, Stack, Flex, Select, DialogFooter } from '@hygraph/baukasten';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   useUiExtensionDialog,
   useFieldExtension,
-} from '@graphcms/uix-react-sdk';
+} from '@graphcms/app-sdk-react';
 import React from 'react';
 
 
@@ -18,18 +18,27 @@ const getSpells = async () => {
 
 export const DialogButton = () => {
   const { value, onChange, openDialog } = useFieldExtension();
+  const [ state, setState ] = useState(value || '');
+
+  useEffect(() => {
+    setState(value)
+  }, [value])
+
 
   const handleOpenDialog = () => {
     openDialog('./dialog', { value }).then((response) => {
+      console.log({response})
       if (response) {
         onChange(response);
+      } else if (response === null) {
+        onChange('')
       }
     });
   };
   return (
     <BaukastenProvider>
       <Flex gap="16">
-        <Input flex="4" value={value} onChange={onChange} />
+        <Input flex="4" value={state} onChange={onChange} />
         <Button flex="1" size="large" onClick={handleOpenDialog}>Find ID</Button>
       </Flex>
     </BaukastenProvider>
@@ -84,7 +93,6 @@ export const Dialog = () => {
     }
   }, [spells])
 
-  console.log({ spells, state })
 
   return (
     <BaukastenProvider>

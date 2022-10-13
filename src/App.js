@@ -2,17 +2,10 @@ import {Dialog, DialogButton} from './extensions/Dialog';
 import Setup from './extensions/Setup';
 import {
   Wrapper
-} from '@graphcms/uix-react-sdk';
+} from '@graphcms/app-sdk-react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
-const declaration = {
-  extensionType: 'field',
-  fieldType: 'STRING',
-  name: 'DND Spell Search',
-  description: 'Search for D&D Spells',
-  features: ['FieldRenderer'],
-};
 function App() {
   return (
     <Wrapper>
